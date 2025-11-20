@@ -2,8 +2,13 @@ import { Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { cn } from "@/lib/utils";
 
-const SendWhatsAppButton = () => {
+interface SendWhatsAppButtonProps {
+  className?: string;
+}
+
+const SendWhatsAppButton = ({ className }: SendWhatsAppButtonProps) => {
   const { toast } = useToast();
 
   const handleSend = async () => {
@@ -32,7 +37,7 @@ const SendWhatsAppButton = () => {
     }
 
     const message = encodeURIComponent(
-      "I added comments, please review and get back"
+      "Hey, I have a few questions on the quote..."
     );
     const phoneNumber = "31633461503";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
@@ -41,9 +46,15 @@ const SendWhatsAppButton = () => {
   };
 
   return (
-    <Button onClick={handleSend} size="lg" className="gap-2">
+    <Button
+      onClick={handleSend}
+      size="lg"
+      className={cn("gap-2", className)}
+      aria-label="WhatsApp Questions"
+    >
       <Send className="w-4 h-4" />
-      Send
+      <span className="hidden sm:inline">WhatsApp Questions</span>
+      <span className="sr-only sm:hidden">WhatsApp Questions</span>
     </Button>
   );
 };

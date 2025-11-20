@@ -1,32 +1,34 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Download, Mail, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import CommentableSection from "@/components/CommentableSection";
-import CommentsPanel from "@/components/CommentsPanel";
 import SendWhatsAppButton from "@/components/SendWhatsAppButton";
 
 const Index = () => {
-  const [refreshComments, setRefreshComments] = useState(0);
-
   const handlePrint = () => {
     window.print();
   };
 
-  const handleCommentAdded = () => {
-    setRefreshComments((prev) => prev + 1);
-  };
+  const propertyUrl =
+    "https://www.funda.nl/detail/koop/verkocht/amstelveen/huis-tjalk-7/43099917/";
 
   return (
     <div className="min-h-screen bg-background">
       {/* Action Buttons - Hidden when printing */}
-      <div className="print:hidden fixed top-4 right-4 z-50 flex gap-2">
+      <div className="print:hidden fixed bottom-4 right-4 z-50 flex flex-col gap-2 sm:flex-row">
         <SendWhatsAppButton />
-        <Button onClick={handlePrint} size="lg" className="gap-2">
+        <Button
+          onClick={handlePrint}
+          size="lg"
+          className="gap-2"
+          aria-label="Download PDF"
+        >
           <Download className="w-4 h-4" />
-          Download PDF
+          <span className="hidden sm:inline">Download PDF</span>
+          <span className="sr-only sm:hidden">Download PDF</span>
         </Button>
       </div>
 
@@ -36,15 +38,28 @@ const Index = () => {
           <div className="flex justify-between items-start mb-8">
             <div>
               <h1 className="text-4xl font-bold tracking-tight text-foreground mb-2">
-                Sehgal Residence
+                <a
+                  href={propertyUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-3 hover:text-primary transition-colors"
+                >
+                  <img
+                    src="/public/sehgal.png"
+                    alt="Sehgal Residence thumbnail"
+                    className="h-12 w-20 rounded object-cover shadow"
+                    loading="lazy"
+                  />
+                  Sehgal Residence
+                </a>
               </h1>
               <p className="text-muted-foreground">20.11.2025</p>
             </div>
             <div className="text-right">
-              <img 
-                src={logo} 
-                alt="Purple Palette Design Studios" 
-                className="h-16 w-auto mb-3 ml-auto"
+              <img
+                src={logo}
+                alt="Purple Palette Design Studios"
+                className="h-24 w-auto mb-3 ml-auto"
               />
               <div className="text-sm text-muted-foreground space-y-1">
                 <div className="flex items-center justify-end gap-2">
@@ -79,7 +94,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="gf-living" 
                 sectionTitle="Ground Floor - Living Room"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">1. Living Room</h4>
@@ -93,7 +107,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="gf-dining" 
                 sectionTitle="Ground Floor - Dining Room and Kitchen"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">2. Dining Room and Kitchen</h4>
@@ -107,7 +120,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="gf-puja" 
                 sectionTitle="Ground Floor - Puja Room"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">3. Puja Room</h4>
@@ -120,7 +132,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="gf-garage" 
                 sectionTitle="Ground Floor - Garage (Guest Room)"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">4. Garage (Converted to Guest Room)</h4>
@@ -133,7 +144,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="gf-basement" 
                 sectionTitle="Ground Floor - Basement (Music Room)"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">5. Basement (Converted into Music Room)</h4>
@@ -147,7 +157,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="gf-backyard" 
                 sectionTitle="Ground Floor - Backyard"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">6. Backyard</h4>
@@ -168,7 +177,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="ff-bedroom12" 
                 sectionTitle="First Floor - Bedroom 1 & 2"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">1. Bedroom 1 & 2</h4>
@@ -182,7 +190,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="ff-gym" 
                 sectionTitle="First Floor - Bedroom 3 (Gym)"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">2. Bedroom 3 (Converted to Gym)</h4>
@@ -195,7 +202,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="ff-lobby" 
                 sectionTitle="First Floor - Lobby Area"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">3. Lobby Area</h4>
@@ -214,7 +220,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="sf-bedroom" 
                 sectionTitle="Second Floor - Bedroom & Closet"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">1. Bedroom & Closet</h4>
@@ -229,7 +234,6 @@ const Index = () => {
               <CommentableSection 
                 sectionId="sf-sitout" 
                 sectionTitle="Second Floor - Sit Out Area"
-                onCommentAdded={handleCommentAdded}
               >
                 <div>
                   <h4 className="font-semibold text-foreground mb-2">2. Sit Out Area</h4>
@@ -242,13 +246,6 @@ const Index = () => {
             </div>
           </Card>
         </section>
-
-        <Separator className="my-8" />
-
-        {/* Comments Panel */}
-        <CommentsPanel refreshTrigger={refreshComments} />
-
-        <Separator className="my-8" />
 
         {/* Design Fee */}
         <section className="mb-8">
@@ -314,6 +311,11 @@ const Index = () => {
               </p>
             </Card>
           </div>
+          <div className="mt-6 text-right">
+            <Link to="/terms" className="text-sm font-semibold text-primary hover:underline">
+              View General Terms and Conditions
+            </Link>
+          </div>
         </section>
 
         {/* Footer */}
@@ -321,6 +323,7 @@ const Index = () => {
           <p className="mb-2">Purple Palette Design Studios</p>
           <p className="text-xs">ar.apershad@gmail.com | +31 633 461 503 | VAT: NL005240200B61</p>
         </footer>
+
       </div>
 
       {/* Print Styles */}
