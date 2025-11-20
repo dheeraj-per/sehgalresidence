@@ -50,6 +50,7 @@ const Index = () => {
                     className="h-12 w-20 rounded object-cover shadow"
                     loading="lazy"
                   />
+                  
                   Sehgal Residence
                 </a>
               </h1>
