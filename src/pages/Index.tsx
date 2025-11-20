@@ -42,15 +42,8 @@ const Index = () => {
                   href={propertyUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-3 hover:text-primary transition-colors"
+                  className="hover:text-primary transition-colors"
                 >
-                  <img
-                    src="/public/sehgal.png"
-                    alt="Sehgal Residence thumbnail"
-                    className="h-12 w-20 rounded object-cover shadow"
-                    loading="lazy"
-                  />
-                  
                   Sehgal Residence
                 </a>
               </h1>
