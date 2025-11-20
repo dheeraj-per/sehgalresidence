@@ -1,17 +1,29 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Download, Mail, Phone } from "lucide-react";
+import logo from "@/assets/logo.png";
+import CommentableSection from "@/components/CommentableSection";
+import CommentsPanel from "@/components/CommentsPanel";
+import SendWhatsAppButton from "@/components/SendWhatsAppButton";
 
 const Index = () => {
+  const [refreshComments, setRefreshComments] = useState(0);
+
   const handlePrint = () => {
     window.print();
   };
 
+  const handleCommentAdded = () => {
+    setRefreshComments((prev) => prev + 1);
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Print Button - Hidden when printing */}
-      <div className="print:hidden fixed top-4 right-4 z-50">
+      {/* Action Buttons - Hidden when printing */}
+      <div className="print:hidden fixed top-4 right-4 z-50 flex gap-2">
+        <SendWhatsAppButton />
         <Button onClick={handlePrint} size="lg" className="gap-2">
           <Download className="w-4 h-4" />
           Download PDF
@@ -29,9 +41,11 @@ const Index = () => {
               <p className="text-muted-foreground">20.11.2025</p>
             </div>
             <div className="text-right">
-              <div className="text-sm font-semibold text-primary mb-1">
-                Purple Palette Design Studios
-              </div>
+              <img 
+                src={logo} 
+                alt="Purple Palette Design Studios" 
+                className="h-16 w-auto mb-3 ml-auto"
+              />
               <div className="text-sm text-muted-foreground space-y-1">
                 <div className="flex items-center justify-end gap-2">
                   <Phone className="w-3 h-3" />
@@ -62,52 +76,88 @@ const Index = () => {
           <Card className="mb-6 p-6 border-l-4 border-primary">
             <h3 className="text-xl font-semibold text-foreground mb-4">Ground Floor</h3>
             <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">1. Living Room</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Orientation of Furniture</li>
-                  <li>Selection of Lights, TV Unit, Furniture (If needed)</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="gf-living" 
+                sectionTitle="Ground Floor - Living Room"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">1. Living Room</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Orientation of Furniture</li>
+                    <li>Selection of Lights, TV Unit, Furniture (If needed)</li>
+                  </ul>
+                </div>
+              </CommentableSection>
               
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">2. Dining Room and Kitchen</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Selection of Lighting Fixtures and Artefacts</li>
-                  <li>Selection of Dining Table if necessary</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="gf-dining" 
+                sectionTitle="Ground Floor - Dining Room and Kitchen"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">2. Dining Room and Kitchen</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Selection of Lighting Fixtures and Artefacts</li>
+                    <li>Selection of Dining Table if necessary</li>
+                  </ul>
+                </div>
+              </CommentableSection>
 
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">3. Puja Room</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Complete Design with 3D and 2D drawings</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="gf-puja" 
+                sectionTitle="Ground Floor - Puja Room"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">3. Puja Room</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Complete Design with 3D and 2D drawings</li>
+                  </ul>
+                </div>
+              </CommentableSection>
 
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">4. Garage (Converted to Guest Room)</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Complete Design for Bedroom, Toilet and Sauna with 3D and 2D drawings</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="gf-garage" 
+                sectionTitle="Ground Floor - Garage (Guest Room)"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">4. Garage (Converted to Guest Room)</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Complete Design for Bedroom, Toilet and Sauna with 3D and 2D drawings</li>
+                  </ul>
+                </div>
+              </CommentableSection>
 
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">5. Basement (Converted into Music Room)</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Complete Design with 2D drawings</li>
-                  <li>Design of Room Leading to Basement</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="gf-basement" 
+                sectionTitle="Ground Floor - Basement (Music Room)"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">5. Basement (Converted into Music Room)</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Complete Design with 2D drawings</li>
+                    <li>Design of Room Leading to Basement</li>
+                  </ul>
+                </div>
+              </CommentableSection>
 
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">6. Backyard</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Jacuzzi with some covering overhead</li>
-                  <li>Storage for bikes</li>
-                  <li>Selection of Outdoor Furniture</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="gf-backyard" 
+                sectionTitle="Ground Floor - Backyard"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">6. Backyard</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Jacuzzi with some covering overhead</li>
+                    <li>Storage for bikes</li>
+                    <li>Selection of Outdoor Furniture</li>
+                  </ul>
+                </div>
+              </CommentableSection>
             </div>
           </Card>
 
@@ -115,27 +165,45 @@ const Index = () => {
           <Card className="mb-6 p-6 border-l-4 border-primary">
             <h3 className="text-xl font-semibold text-foreground mb-4">First Floor</h3>
             <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">1. Bedroom 1 & 2</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Orientation of Furniture</li>
-                  <li>Selection of Study and Curtains (Wherever needed)</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="ff-bedroom12" 
+                sectionTitle="First Floor - Bedroom 1 & 2"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">1. Bedroom 1 & 2</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Orientation of Furniture</li>
+                    <li>Selection of Study and Curtains (Wherever needed)</li>
+                  </ul>
+                </div>
+              </CommentableSection>
 
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">2. Bedroom 3 (Converted to Gym)</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Placement of Temporary Gym floor and equipment</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="ff-gym" 
+                sectionTitle="First Floor - Bedroom 3 (Gym)"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">2. Bedroom 3 (Converted to Gym)</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Placement of Temporary Gym floor and equipment</li>
+                  </ul>
+                </div>
+              </CommentableSection>
 
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">3. Lobby Area</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Design and Selection of Furniture and Artefacts</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="ff-lobby" 
+                sectionTitle="First Floor - Lobby Area"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">3. Lobby Area</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Design and Selection of Furniture and Artefacts</li>
+                  </ul>
+                </div>
+              </CommentableSection>
             </div>
           </Card>
 
@@ -143,25 +211,42 @@ const Index = () => {
           <Card className="mb-6 p-6 border-l-4 border-primary">
             <h3 className="text-xl font-semibold text-foreground mb-4">Second Floor</h3>
             <div className="space-y-4 text-sm">
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">1. Bedroom & Closet</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Design with 3D and 2D drawings for Bedroom</li>
-                  <li>Selection of Furniture, artefacts, curtains, etc.</li>
-                  <li>Orientation and Selection of furniture for the Walk-in Closet</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="sf-bedroom" 
+                sectionTitle="Second Floor - Bedroom & Closet"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">1. Bedroom & Closet</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Design with 3D and 2D drawings for Bedroom</li>
+                    <li>Selection of Furniture, artefacts, curtains, etc.</li>
+                    <li>Orientation and Selection of furniture for the Walk-in Closet</li>
+                  </ul>
+                </div>
+              </CommentableSection>
 
-              <div>
-                <h4 className="font-semibold text-foreground mb-2">2. Sit Out Area</h4>
-                <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
-                  <li>Selection of Furniture</li>
-                  <li>Drawings to convert the area into a semi-closed space</li>
-                </ul>
-              </div>
+              <CommentableSection 
+                sectionId="sf-sitout" 
+                sectionTitle="Second Floor - Sit Out Area"
+                onCommentAdded={handleCommentAdded}
+              >
+                <div>
+                  <h4 className="font-semibold text-foreground mb-2">2. Sit Out Area</h4>
+                  <ul className="list-disc list-inside text-muted-foreground space-y-1 ml-4">
+                    <li>Selection of Furniture</li>
+                    <li>Drawings to convert the area into a semi-closed space</li>
+                  </ul>
+                </div>
+              </CommentableSection>
             </div>
           </Card>
         </section>
+
+        <Separator className="my-8" />
+
+        {/* Comments Panel */}
+        <CommentsPanel refreshTrigger={refreshComments} />
 
         <Separator className="my-8" />
 
