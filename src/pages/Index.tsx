@@ -263,24 +263,24 @@ const Index = () => {
           <h2 className="text-2xl font-bold text-foreground mb-6">Terms of Payment</h2>
           <Card className="p-6">
             <p className="text-sm text-muted-foreground mb-4">
-              Payment to be made in 3 installments:
+              Payment to be made in 3 installments: 
             </p>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-md">
                 <span className="font-semibold text-foreground">1st Installment</span>
-                <span className="text-primary font-semibold">40% (€720)</span>
+                <span className="text-primary font-semibold">40% (€720 ex. VAT)</span>
               </div>
               <p className="text-xs text-muted-foreground ml-3">To be paid before the work starts</p>
 
               <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-md">
                 <span className="font-semibold text-foreground">2nd Installment</span>
-                <span className="text-primary font-semibold">30% (€540)</span>
+                <span className="text-primary font-semibold">30% (€540 ex. VAT)</span>
               </div>
               <p className="text-xs text-muted-foreground ml-3">To be paid mid-way</p>
 
               <div className="flex justify-between items-center p-3 bg-secondary/30 rounded-md">
                 <span className="font-semibold text-foreground">3rd Installment</span>
-                <span className="text-primary font-semibold">30% (€540)</span>
+                <span className="text-primary font-semibold">30% (€540 ex. VAT)</span>
               </div>
               <p className="text-xs text-muted-foreground ml-3">To be paid before submission of final drawings/requirements</p>
             </div>
