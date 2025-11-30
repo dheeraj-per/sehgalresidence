@@ -18,25 +18,45 @@ export type Database = {
         Row: {
           comment: string
           created_at: string
+          deleted_at: string | null
           id: string
+          name: string | null
+          parent_id: string | null
           quotation_id: string
           section: string
+          updated_at: string | null
         }
         Insert: {
           comment: string
           created_at?: string
+          deleted_at?: string | null
           id?: string
+          name?: string | null
+          parent_id?: string | null
           quotation_id: string
           section: string
+          updated_at?: string | null
         }
         Update: {
           comment?: string
           created_at?: string
+          deleted_at?: string | null
           id?: string
+          name?: string | null
+          parent_id?: string | null
           quotation_id?: string
           section?: string
+          updated_at?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "quotation_comments_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "quotation_comments"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
