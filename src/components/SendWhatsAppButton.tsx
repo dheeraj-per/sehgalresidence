@@ -50,11 +50,11 @@ const SendWhatsAppButton = ({ className }: SendWhatsAppButtonProps) => {
       onClick={handleSend}
       size="lg"
       className={cn("gap-2", className)}
-      aria-label="WhatsApp Questions"
+      aria-label="Contact"
     >
       <Send className="w-4 h-4" />
-      <span className="hidden sm:inline">WhatsApp Questions</span>
-      <span className="sr-only sm:hidden">WhatsApp Questions</span>
+      <span className="hidden sm:inline">Contact</span>
+      <span className="sr-only sm:hidden">Contact</span>
     </Button>
   );
 };
