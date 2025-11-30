@@ -20,14 +20,14 @@ const CommentableSection = ({
 
   return (
     <>
-      <div className="relative group">
+      <div className="relative">
         <div className="flex items-start gap-2">
           <div className="flex-1">{children}</div>
           <Button
             variant="ghost"
             size="sm"
             onClick={() => setDialogOpen(true)}
-            className="opacity-0 group-hover:opacity-100 transition-opacity h-8 w-8 p-0 print:hidden"
+            className="h-8 w-8 p-0 print:hidden"
             aria-label="Add comment"
           >
             <MessageSquare className="h-4 w-4 text-muted-foreground hover:text-primary" />
