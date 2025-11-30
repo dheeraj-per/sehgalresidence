@@ -243,7 +243,12 @@ const Index = () => {
 
         {/* Design Fee */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Design Fee</h2>
+          <CommentableSection
+            sectionId="design-fee"
+            sectionTitle="Design Fee"
+          >
+            <h2 className="text-2xl font-bold text-foreground mb-6">Design Fee</h2>
+          </CommentableSection>
           <Card className="p-6 bg-secondary/30">
             <div className="flex justify-between items-baseline mb-4">
               <span className="text-lg text-foreground">Total Design Fee</span>
@@ -260,7 +265,12 @@ const Index = () => {
 
         {/* Terms of Payment */}
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-foreground mb-6">Terms of Payment</h2>
+          <CommentableSection
+            sectionId="terms-payment"
+            sectionTitle="Terms of Payment"
+          >
+            <h2 className="text-2xl font-bold text-foreground mb-6">Terms of Payment</h2>
+          </CommentableSection>
           <Card className="p-6">
             <p className="text-sm text-muted-foreground mb-4">
               Payment to be made in 3 installments: 
