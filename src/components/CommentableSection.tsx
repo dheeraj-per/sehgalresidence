@@ -27,10 +27,10 @@ const CommentableSection = ({
             variant="ghost"
             size="sm"
             onClick={() => setDialogOpen(true)}
-            className="h-8 w-8 p-0 print:hidden"
+            className="h-8 w-8 p-0 print:hidden group"
             aria-label="Add comment"
           >
-            <MessageSquare className="h-4 w-4 text-muted-foreground hover:text-primary" />
+            <MessageSquare className="h-4 w-4 text-muted-foreground group-hover:text-white transition-colors" />
           </Button>
         </div>
       </div>

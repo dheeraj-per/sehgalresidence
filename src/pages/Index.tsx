@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { Download, Mail, Phone } from "lucide-react";
+import { Download, Mail, Phone, MessageSquare } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo from "@/assets/logo.png";
 import CommentableSection from "@/components/CommentableSection";
@@ -33,6 +33,13 @@ const Index = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-12">
+        {/* Instructional Note */}
+        <div className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg print:hidden">
+          <p className="text-sm text-foreground text-center">
+            Add your questions using the <MessageSquare className="inline h-4 w-4 mx-1" /> icon. Make sure to let us know by clicking the Contact button below.
+          </p>
+        </div>
+
         {/* Header */}
         <header className="mb-12">
           <div className="flex justify-between items-start mb-8">
