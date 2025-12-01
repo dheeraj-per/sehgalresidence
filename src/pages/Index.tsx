@@ -33,13 +33,6 @@ const Index = () => {
       </div>
 
       <div className="max-w-4xl mx-auto px-6 py-12">
-        {/* Instructional Note */}
-        <div className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg print:hidden">
-          <p className="text-sm text-foreground text-center">
-            Add your questions using the <MessageSquare className="inline h-4 w-4 mx-1" /> icon. Make sure to let us know by clicking the Contact button below.
-          </p>
-        </div>
-
         {/* Header */}
         <header className="mb-12">
           <div className="flex justify-between items-start mb-8">
@@ -83,6 +76,13 @@ const Index = () => {
         </header>
 
         <Separator className="my-8" />
+
+        {/* Instructional Note */}
+        <div className="mb-8 p-4 bg-primary/10 border border-primary/20 rounded-lg print:hidden">
+          <p className="text-sm text-foreground text-center">
+            Add your questions using the <MessageSquare className="inline h-4 w-4 mx-1" /> icon. Make sure to let us know by clicking the Contact button below.
+          </p>
+        </div>
 
         {/* Scope of Work */}
         <section className="mb-12">
