@@ -55,6 +55,10 @@ const Index = () => {
                 alt="Purple Palette Design Studios"
                 className="h-24 w-auto mb-3 ml-auto"
               />
+              <div className="mb-3">
+                <h2 className="text-lg font-semibold text-foreground">Akriti Pershad</h2>
+                <p className="text-sm text-muted-foreground">Architect</p>
+              </div>
               <div className="text-sm text-muted-foreground space-y-1">
                 <div className="flex items-center justify-end gap-2">
                   <Phone className="w-3 h-3" />
@@ -67,11 +71,6 @@ const Index = () => {
                 <div className="text-xs mt-2">VAT: NL005240200B61</div>
               </div>
             </div>
-          </div>
-          
-          <div className="border-l-4 border-primary pl-6 py-2">
-            <h2 className="text-xl font-semibold text-foreground">Akriti Pershad</h2>
-            <p className="text-muted-foreground">Architect</p>
           </div>
         </header>
 
