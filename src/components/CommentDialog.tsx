@@ -50,6 +50,12 @@ interface CommentItemProps {
   replies: Comment[];
 }
 
+interface CommentItemInternalProps extends CommentItemProps {
+  getReplies: (parentId: string) => Comment[];
+  editingId: string | null;
+  replyingTo: string | null;
+}
+
 const CommentItem = memo(({
   comment,
   isReply = false,
@@ -71,7 +77,10 @@ const CommentItem = memo(({
   onCancelReply,
   onSubmitReply,
   replies,
-}: CommentItemProps) => {
+  getReplies,
+  editingId,
+  replyingTo,
+}: CommentItemInternalProps) => {
   return (
     <div className={`space-y-2 ${isReply ? "ml-8 pl-4 border-l-2 border-border" : ""}`}>
       <div className="rounded-lg border border-border bg-card p-3">
@@ -113,16 +122,14 @@ const CommentItem = memo(({
                 <p className="text-sm text-foreground">{comment.comment}</p>
               </div>
               <div className="flex gap-1">
-                {!isReply && (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onClick={() => onStartReply(comment.id)}
-                    className="h-7 w-7 p-0"
-                  >
-                    <Reply className="h-3 w-3" />
-                  </Button>
-                )}
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => onStartReply(comment.id)}
+                  className="h-7 w-7 p-0"
+                >
+                  <Reply className="h-3 w-3" />
+                </Button>
                 <Button
                   size="sm"
                   variant="ghost"
@@ -173,31 +180,37 @@ const CommentItem = memo(({
         </div>
       )}
 
-      {replies.map((reply) => (
-        <CommentItem
-          key={reply.id}
-          comment={reply}
-          isReply={true}
-          onEdit={onEdit}
-          onDelete={onDelete}
-          onStartReply={onStartReply}
-          onStartEdit={onStartEdit}
-          isEditing={false}
-          isReplying={false}
-          editText=""
-          editName=""
-          replyText=""
-          replyName=""
-          onEditTextChange={() => {}}
-          onEditNameChange={() => {}}
-          onReplyTextChange={() => {}}
-          onReplyNameChange={() => {}}
-          onCancelEdit={() => {}}
-          onCancelReply={() => {}}
-          onSubmitReply={() => {}}
-          replies={[]}
-        />
-      ))}
+      {replies.map((reply) => {
+        const nestedReplies = getReplies(reply.id);
+        return (
+          <CommentItem
+            key={reply.id}
+            comment={reply}
+            isReply={true}
+            onEdit={onEdit}
+            onDelete={onDelete}
+            onStartReply={onStartReply}
+            onStartEdit={onStartEdit}
+            isEditing={editingId === reply.id}
+            isReplying={replyingTo === reply.id}
+            editText={editText}
+            editName={editName}
+            replyText={replyText}
+            replyName={replyName}
+            onEditTextChange={onEditTextChange}
+            onEditNameChange={onEditNameChange}
+            onReplyTextChange={onReplyTextChange}
+            onReplyNameChange={onReplyNameChange}
+            onCancelEdit={onCancelEdit}
+            onCancelReply={onCancelReply}
+            onSubmitReply={onSubmitReply}
+            replies={nestedReplies}
+            getReplies={getReplies}
+            editingId={editingId}
+            replyingTo={replyingTo}
+          />
+        );
+      })}
     </div>
   );
 });
@@ -378,6 +391,9 @@ export const CommentDialog = ({
                   }}
                   onSubmitReply={handleReply}
                   replies={getReplies(comment.id)}
+                  getReplies={getReplies}
+                  editingId={editingId}
+                  replyingTo={replyingTo}
                 />
               ))
             )}
